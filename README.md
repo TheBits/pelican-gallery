@@ -29,7 +29,7 @@ Feel free to write more transforms, see the PIL docs for what it can do:
 ##Settings:
 You will need to add some variables to your pelicanconf.py and publishconf.py respectively.  The settings should be added towards the bottom as there are some dependencies on other variables that come with a basic pelican setup.  
 
-###Example configuration values from peliconconf.py:
+###Example configuration values from pelicanconf.py:
 ```
 GALLERY_FOLDER = "galleries"
 GALLERY_SRC_PATH = "%s%s" % (BASE_PATH, "gallery_src")
