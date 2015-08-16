@@ -129,9 +129,8 @@ class Gallery():
         if "gallery" in self.metadata:
             self.gallery_name = self.metadata["gallery"]
             try:
-                self.absolute_src_path =  "%s%s%s" % (self.generator.settings["GALLERY_SRC_PATH"],
-                                                    os.sep,
-                                                    self.gallery_name)
+                self.absolute_src_path = os.path.join(self.generator.settings["GALLERY_SRC_PATH"],
+                                            self.gallery_name)
             except KeyError:
                 logging.error('Add GALLERY_SRC_PATH variable to your pelicanconf.py. See: https://github.com/hunt3r/pelican-gallery#settings')
                 raise
@@ -152,8 +151,7 @@ class Gallery():
         for f in sorted(self.get_files_from_data()):
             photoInstances = {}
             for preset in self.generator.settings["GALLERY_PRESETS"]:
-                preset_dir = "%s%s%s" % (self.absolute_output_path,
-                                         os.sep,
+                preset_dir = os.path.join(self.absolute_output_path,
                                          preset["name"])
                 photoInstances[preset["name"]] = Photo(self, f, preset_dir, preset)
 
