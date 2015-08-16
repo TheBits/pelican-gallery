@@ -2,6 +2,13 @@ import logging, json, os, sys, time
 from pelican import signals
 from PIL import ImageOps, Image
 
+logger = logging.getLogger(__name__)
+
+__all__ = (
+    'register',
+)
+
+
 """
 
 Gallery plugin for Pelican
@@ -160,10 +167,10 @@ class Gallery():
                 if not os.path.exists(preset_dir):
                     os.makedirs(preset_dir)
         else:
-            print("You have no presets defined, please add GALLERY_PRESETS array to settings file, with at least one preset defined, see docs.")
+            logger.warning("You have no presets defined, please add GALLERY_PRESETS array to settings file, with at least one preset defined, see docs.")
 
     def get_files_from_data(self):
-        print("getting files for %s" % self.absolute_src_path)
+        logger.info("getting files for %s" % self.absolute_src_path)
         from os import listdir
         from os.path import isfile, join
         return [ f for f in listdir(self.absolute_src_path) if isfile(join(self.absolute_src_path,f)) and f != ".DS_Store" ]
