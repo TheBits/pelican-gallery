@@ -128,13 +128,21 @@ class Gallery():
 
         if "gallery" in self.metadata:
             self.gallery_name = self.metadata["gallery"]
-            self.absolute_src_path =  "%s%s%s" % (self.generator.settings["GALLERY_SRC_PATH"],
+            try:
+                self.absolute_src_path =  "%s%s%s" % (self.generator.settings["GALLERY_SRC_PATH"],
                                                     os.sep,
                                                     self.gallery_name)
+            except KeyError:
+                logging.error('Add GALLERY_SRC_PATH variable to your pelicanconf.py. See: https://github.com/hunt3r/pelican-gallery#settings')
+                raise
 
-            self.absolute_output_path = "%s%s%s" % (self.generator.settings["GALLERY_OUTPUT_PATH"],
+            try:
+                self.absolute_output_path = "%s%s%s" % (self.generator.settings["GALLERY_OUTPUT_PATH"],
                                                     os.sep,
                                                     self.gallery_name)
+            except KeyError:
+                logging.error('Add GALLERY_OUTPUT_PATH variable to your pelicanconf.py. See: https://github.com/hunt3r/pelican-gallery#settings')
+                raise
 
             self.create_preset_folders()
             self.create_preset_images()
