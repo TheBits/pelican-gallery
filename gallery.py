@@ -173,7 +173,9 @@ class Gallery():
                 if not os.path.exists(preset_dir):
                     os.makedirs(preset_dir)
         else:
-            logger.warning("You have no presets defined, please add GALLERY_PRESETS array to settings file, with at least one preset defined, see docs.")
+            logger.warning("You have no presets defined, please add \
+                    GALLERY_PRESETS array to settings file, with at \
+                    least one preset defined, see docs.")
 
     def get_files_from_data(self):
         logger.info("getting files for %s" % self.absolute_src_path)
